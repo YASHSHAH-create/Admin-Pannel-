@@ -1,0 +1,98 @@
+<!-- templates/admin_panel.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .actions {
+            white-space: nowrap;
+        }
+
+        .edit, .delete {
+            padding: 4px 8px;
+            margin-right: 4px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .edit {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .delete {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Email</th>
+            <th>Query</th>
+            <th>Sector</th>
+            <th>Ticket ID</th>
+            <th>Actions</th>  <!-- New column for actions -->
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row['Name'] }}</td>
+            <td>{{ row['Number'] }}</td>
+            <td>{{ row['Email'] }}</td>
+            <td>{{ row['Query'] }}</td>
+            <td>{{ row['Sector'] }}</td>
+            <td>{{ row['Ticket ID'] }}</td>
+            <td class="actions">
+                <a class="edit" href="{{ url_for('edit', ticket_id=row['Ticket ID']) }}">Edit</a>
+                <a class="delete" href="{{ url_for('delete', ticket_id=row['Ticket ID']) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
